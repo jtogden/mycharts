@@ -1,0 +1,28 @@
+annotations:
+  max_scale_version: 24.04.1
+  min_scale_version: 24.04.0
+  truecharts.org/category: games
+  truecharts.org/max_helm_version: "3.15"
+  truecharts.org/min_helm_version: "3.11"
+  truecharts.org/train: stable
+apiVersion: v2
+appVersion: latest
+description: Soulmask dedicated game server
+dependencies:
+  - name: common
+    version: 25.4.10
+    repository: oci://tccr.io/truecharts
+    condition: ""
+    alias: ""
+    tags: []
+    import-values: []
+deprecated: false
+keywords:
+  - soulmask
+  - game
+  - dedicated
+  - server
+kubeVersion: '>=1.24.0-0'
+name: soulmask
+version: 0.1.0
+icon: https://cdn2.steamgriddb.com/icon/e230fbbd3306d4fdd04f9f185634ed1d/32/256x256.png

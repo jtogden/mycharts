@@ -1,0 +1,62 @@
+image:
+    repository: kagurazakanyaa/soulmask
+    pullPolicy: IfNotPresent
+    tag: latest@sha256:efc65d2cde1daac7c94367961c3a64836dc6756ebb73047c870c5b888ad63ef2
+persistence:
+    config:
+        enabled: true
+        mountPath: /opt/soulmask/WS/Saved
+service:
+    main:
+        enabled: true
+        ports:
+            server:
+                enabled: true
+                port: 8777
+                protocol: udp
+            query:
+                enabled: true
+                port: 27015
+                protocol: udp
+            main:
+                enabled: true
+                port: 18888
+                protocol: tcp
+portal:
+    open:
+        enabled: false
+securityContext:
+  container:
+    runAsNonRoot: false
+    readOnlyRootFilesystem: false
+    runAsUser: 1000
+    runAsGroup: 1000
+workload:
+    main:
+        podSpec:
+            containers:
+                main:
+                    probes:
+                        liveness:
+                            type: tcp
+                        readiness:
+                            type: tcp
+                        startup:
+                            type: tcp
+                    env:
+                        FORCE_UPDATE: false
+                        LEVEL_NAME: Level01_Main
+                        GAME_PORT: 8777
+                        QUERY_PORT: 27015
+                        ECHO_PORT: 18888
+                        MAX_PLAYERS: 10
+                        SERVER_NAME: "Dodgeball Time"
+                        SAVED_DIR_SUFFIX: 
+                        SERVER_PASSWORD: S0ulm4sk
+                        ADMIN_PASSWORD: changeme
+                        INIT_BACKUP: true
+                        BACKUP_INTERVAL_MINUTES: 30
+                        SAVING_SYNC_INTERVAL_SECONDS: 120
+                        BACKUP_SYNC_INTERVAL_SECONDS: 120
+                        GAME_MODE: pve
+                        MOD_ID_LIST:                  
